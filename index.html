@@ -86,13 +86,13 @@ nav a:hover, nav a.active{
 
 /* PAGES SYSTEM */
 .page {
-    display: none; /* Versteckt alle Seiten standardmäßig */
+    display: none;
     animation: fadeUp 0.5s ease forwards;
     flex: 1;
 }
 
 .page.active {
-    display: block; /* Zeigt nur die aktive Seite */
+    display: block;
 }
 
 /* HERO */
@@ -187,10 +187,10 @@ nav a:hover, nav a.active{
     line-height:1.7;
 }
 
-/* SHOWCASE SPECIFIC STYLES - GEFIXT */
+/* SHOWCASE SPECIFIC STYLES - GEFIXT FÜR STANDARDPROPORTIONEN */
 .showcase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
     margin-top: 20px;
 }
@@ -202,7 +202,7 @@ nav a:hover, nav a.active{
     border: 1px solid rgba(255,255,255,.05);
     transition: .3s;
     display: flex;
-    flex-direction: column; /* Bringt den Text unter das Bild */
+    flex-direction: column;
     height: 100%;
 }
 
@@ -212,22 +212,33 @@ nav a:hover, nav a.active{
 
 .showcase-image {
     width: 100%;
-    height: 220px; /* Feste Höhe für die obere Bild-Box */
-    background: #1e284a;
+    background: #0f152a; /* Dunklerer Hintergrund für Bildränder */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
     overflow: hidden;
+    padding: 10px; /* Gibt dem Bild etwas Atemraum */
 }
 
 .showcase-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Verhindert das Verzerren/Glätschen des Bildes */
-    object-position: center;
+    height: auto;
+    max-height: 280px; /* Verhindert, dass das Bild zu riesig wird */
+    object-fit: contain; /* Behält Standard-Seitenverhältnis bei, kein Abscheiden! */
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.showcase-image img:hover {
+    transform: scale(1.02); /* Kleiner Hover-Effekt signalisiert Klickbarkeit */
 }
 
 .showcase-content {
     padding: 25px;
     background: var(--card);
     flex-grow: 1;
+    border-top: 1px solid rgba(255,255,255,.03);
 }
 
 .showcase-content h3 {
@@ -240,6 +251,57 @@ nav a:hover, nav a.active{
     color: var(--muted);
     line-height: 1.6;
     font-size: 1rem;
+}
+
+/* LIGHTBOX OVERLAY EFFECT */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: var(--text);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lightbox-close:hover {
+    color: var(--accent2);
 }
 
 /* FOOTER */
@@ -332,13 +394,13 @@ footer img{
 <div id="page-showcase" class="page">
     <section class="section">
         <h2>Produkt Showcase</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Hier siehst du meine neuesten Prototypen und fertigen Builds im Detail.</p>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Hier siehst du meine neuesten Prototypen und fertigen Builds im Detail. Klicke auf ein Bild, um es zu vergrößern.</p>
         
         <div class="showcase-grid">
             
             <div class="showcase-item">
                 <div class="showcase-image">
-                    <img src="bilder/IMG_0078.jpeg" alt="SpaceDucki Pad v1">
+                    <img src="bilder/IMG_0078.jpeg" alt="SpaceDucki Pad v1" onclick="openLightbox(this.src)">
                 </div>
                 <div class="showcase-content">
                     <h3>SpaceDucki Pad v1</h3>
@@ -365,6 +427,11 @@ footer img{
     </section>
 </div>
 
+<div id="lightboxOverlay" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="" alt="Großansicht">
+</div>
+
 <footer id="footer">
     <img src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
     <p><strong>SpaceDucki</strong></p>
@@ -386,32 +453,42 @@ window.addEventListener("scroll", () => {
 
 // Seiten-Umschalter Funktion
 function switchPage(pageId) {
-    // Alle Seiten verstecken
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
         page.classList.remove('active');
     });
 
-    // Alle Nav-Links deaktivieren
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
 
-    // Gewünschte Seite anzeigen
     const activePage = document.getElementById('page-' + pageId);
     if(activePage) {
         activePage.classList.add('active');
     }
 
-    // Aktiven Nav-Link markieren
     const activeLink = document.getElementById('nav-' + pageId);
     if(activeLink) {
         activeLink.classList.add('active');
     }
 
-    // Nach oben scrollen bei Seitenwechsel
     window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// LIGHTBOX FUNCTIONS
+const lightbox = document.getElementById('lightboxOverlay');
+const lightboxImg = document.getElementById('lightboxImg');
+
+function openLightbox(imageSrc) {
+    lightboxImg.src = imageSrc;
+    lightbox.classList.add('active');
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    // Timeout verhindert kurzes Aufblitzen des alten Bildes beim nächsten Öffnen
+    setTimeout(() => { lightboxImg.src = ""; }, 300);
 }
 </script>
 

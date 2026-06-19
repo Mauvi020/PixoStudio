@@ -28,6 +28,9 @@ body{
     background:var(--bg);
     color:var(--text);
     overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* ANIMATION */
@@ -46,6 +49,7 @@ header{
     align-items:center;
     padding:18px 10%;
     transition:.3s;
+    background:var(--bg);
 }
 
 header.scrolled{
@@ -58,6 +62,7 @@ header.scrolled{
 .logo img{
     height:60px;
     transition:.3s;
+    cursor: pointer;
 }
 
 /* kleiner beim scrollen */
@@ -72,34 +77,43 @@ nav a{
     margin-left:25px;
     font-weight:600;
     transition:.2s;
+    cursor: pointer;
 }
 
-nav a:hover{
+nav a:hover, nav a.active{
     color:var(--accent2);
+}
+
+/* PAGES SYSTEM */
+.page {
+    display: none; /* Versteckt alle Seiten standardmäßig */
+    animation: fadeUp 0.5s ease forwards;
+    flex: 1;
+}
+
+.page.active {
+    display: block; /* Zeigt nur die aktive Seite */
 }
 
 /* HERO */
 .hero{
-    min-height:90vh;
+    min-height:75vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
     padding:40px;
-    animation:fadeUp 1s ease;
 }
 
 .hero-logo{
     height:170px;
     margin-bottom:20px;
-    animation:fadeUp 1.2s ease;
 }
 
 .hero h1{
     font-size:4rem;
     margin-bottom:20px;
-    animation:fadeUp 1.3s ease;
 }
 
 .hero h1 span{
@@ -112,7 +126,6 @@ nav a:hover{
     line-height:1.8;
     font-size:1.15rem;
     margin-bottom:35px;
-    animation:fadeUp 1.4s ease;
 }
 
 /* BUTTON */
@@ -123,6 +136,7 @@ nav a:hover{
     text-decoration:none;
     font-weight:700;
     transition:.25s;
+    cursor: pointer;
 }
 
 .primary{
@@ -134,9 +148,9 @@ nav a:hover{
     transform:translateY(-3px);
 }
 
-/* SECTIONS */
+/* SECTIONS / PAGES */
 .section{
-    padding:80px 10%;
+    padding:40px 10% 80px 10%;
 }
 
 .section h2{
@@ -173,13 +187,66 @@ nav a:hover{
     line-height:1.7;
 }
 
+/* SHOWCASE SPECIFIC STYLES */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.showcase-item {
+    background: var(--card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.05);
+    transition: .3s;
+}
+
+.showcase-item:hover {
+    transform: translateY(-5px);
+}
+
+.showcase-image {
+    width: 100%;
+    height: 200px;
+    background: #1e284a; /* Platzhalter-Hintergrund falls kein Bild da ist */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    overflow: hidden;
+}
+
+.showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.showcase-content {
+    padding: 25px;
+}
+
+.showcase-content h3 {
+    color: var(--accent2);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.showcase-content p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
 /* FOOTER */
 footer{
-    margin-top:60px;
     padding:40px 20px;
     text-align:center;
     color:var(--muted);
     border-top:1px solid rgba(255,255,255,.05);
+    background: var(--bg);
 }
 
 footer img{
@@ -198,97 +265,131 @@ footer img{
 <body>
 
 <header id="header">
-    <div class="logo">
+    <div class="logo" onclick="switchPage('home')">
         <img src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
     </div>
 
     <nav>
-        <a href="#about">Über mich</a>
-        <a href="#projects">Projekte</a>
-        <a href="#support">Support</a>
+        <a onclick="switchPage('home')" id="nav-home" class="active">Home</a>
+        <a onclick="switchPage('projects')" id="nav-projects">Projekte</a>
+        <a onclick="switchPage('showcase')" id="nav-showcase">Showcase</a>
+        <a onclick="switchPage('support')" id="nav-support">Support & Kontakt</a>
     </nav>
 </header>
 
-<section class="hero">
+<div id="page-home" class="page active">
+    <section class="hero">
+        <img class="hero-logo" src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
+        <h1>Building <span>SpaceDucki</span></h1>
+        <p>
+            Hi, ich bin Mauvi020. Mit SpaceDucki baue ich meine eigene Hardware-Brand auf.<br>
+            ESP32 Projekte, DIY Elektronik, Makro-Pads, Handhelds und PCB Experimente.
+        </p>
+        <a class="btn primary" onclick="switchPage('support')">Unterstütze mich</a>
+    </section>
 
-    <img class="hero-logo" src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
-
-    <h1>Building <span>SpaceDucki</span></h1>
-
-    <p>
-        Hi, ich bin Mauvi020.
-        Mit SpaceDucki baue ich meine eigene Hardware-Brand auf.
-        ESP32 Projekte, DIY Elektronik, Makro-Pads, Handhelds und PCB Experimente.
-    </p>
-
-    <a class="btn primary" href="https://ko-fi.com/mauvi020" target="_blank">
-        Unterstütze mich
-    </a>
-
-</section>
-
-<section class="section" id="about">
-<h2>Über SpaceDucki</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>ESP32 Projekte</h3>
-<p>Makro-Pads, Handhelds und kreative Geräte auf ESP32 Basis.</p>
+    <section class="section">
+        <h2>Über SpaceDucki</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>ESP32 Projekte</h3>
+                <p>Makro-Pads, Handhelds und kreative Geräte auf ESP32 Basis.</p>
+            </div>
+            <div class="card">
+                <h3>DIY PCB</h3>
+                <p>Experimentelle Leiterplatten und neue Bauweisen.</p>
+            </div>
+            <div class="card">
+                <h3>Lernen</h3>
+                <p>Jeder Prototyp bringt neue Skills und Ideen.</p>
+            </div>
+        </div>
+    </section>
 </div>
 
-<div class="card">
-<h3>DIY PCB</h3>
-<p>Experimentelle Leiterplatten und neue Bauweisen.</p>
+<div id="page-projects" class="page">
+    <section class="section">
+        <h2>Meine Projekte</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Makro-Pads</h3>
+                <p>USB Devices mit Display & Encoder.</p>
+            </div>
+            <div class="card">
+                <h3>Handhelds</h3>
+                <p>Mini Konsolen auf ESP32 Basis.</p>
+            </div>
+            <div class="card">
+                <h3>PCB Ideen</h3>
+                <p>3D gedruckte Boards & Kupfer Experimente.</p>
+            </div>
+        </div>
+    </section>
 </div>
 
-<div class="card">
-<h3>Lernen</h3>
-<p>Jeder Prototyp bringt neue Skills und Ideen.</p>
+<div id="page-showcase" class="page">
+    <section class="section">
+        <h2>Produkt Showcase</h2>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Hier siehst du meine neuesten Prototypen und fertigen Builds im Detail.</p>
+        
+        <div class="showcase-grid">
+            
+            <div class="showcase-item">
+                <div class="showcase-image">
+                    <img src="https://via.placeholder.com/400x250" alt="Projekt Bild">
+                </div>
+                <div class="showcase-content">
+                    <h3>SpaceDucki Pad v1</h3>
+                    <p>Ein mechanisches Makro-Pad mit 6 Hot-Swap Switches, einem OLED Display und einem rotierenden Encoder. Perfekt für Shortcuts beim Programmieren oder Schneiden.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-image">
+                    <img src="https://via.placeholder.com/400x250" alt="Projekt Bild">
+                </div>
+                <div class="showcase-content">
+                    <h3>CyberDuck Handheld</h3>
+                    <p>Ein experimenteller Mini-Handheld angetrieben von einem ESP32-WROOM. Nutzt ein 2.4 Zoll TFT Display und einen LiPo-Akku für mobiles Gaming von Retro-Klassikern.</p>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-image">
+                    <img src="https://via.placeholder.com/400x250" alt="Projekt Bild">
+                </div>
+                <div class="showcase-content">
+                    <h3>Custom PCB Evolution</h3>
+                    <p>Mein neuester Platinen-Entwurf mit integrierter Typ-C Schnittstelle und optimierter Signalwege für verringertes Rauschen bei analogen Eingaben.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
 </div>
 
-</div>
-</section>
-
-<section class="section" id="projects">
-<h2>Projekte</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Makro-Pads</h3>
-<p>USB Devices mit Display & Encoder.</p>
-</div>
-
-<div class="card">
-<h3>Handhelds</h3>
-<p>Mini Konsolen auf ESP32 Basis.</p>
+<div id="page-support" class="page">
+    <section class="section" style="text-align: center;">
+        <h2>Support & Kontakt</h2>
+        <p style="color: var(--muted); max-width: 600px; margin: 0 auto 30px auto; line-height: 1.8;">
+            Wenn dir meine Open-Source Hardware-Projekte gefallen, kannst du mich gerne auf Ko-Fi unterstützen. Jeder Betrag hilft mir, neue Bauteile und Platinen zu finanzieren!
+        </p>
+        <a class="btn primary" href="https://ko-fi.com/mauvi020" target="_blank" style="margin-bottom: 50px;">
+            Auf Ko-Fi unterstützen
+        </a>
+    </section>
 </div>
 
-<div class="card">
-<h3>PCB Ideen</h3>
-<p>3D gedruckte Boards & Kupfer Experimente.</p>
-</div>
-
-</div>
-</section>
-
-<footer id="support">
-
+<footer id="footer">
     <img src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
-
     <p><strong>SpaceDucki</strong></p>
-
-    <p class="small">© 2025 SpaceDucki</p>
+    <p class="small">© 2026 SpaceDucki</p>
     <p class="small">Betreiber: Mauvi020</p>
-    <p class="small">info.mauvi.de</p>
-    <p class="small">support@mauvi.de</p>
-
+    <p class="small">info.mauvi.de | support@mauvi.de</p>
 </footer>
 
 <script>
+// Scroll-Effekt für den Header
 const header = document.getElementById("header");
-
 window.addEventListener("scroll", () => {
     if (window.scrollY > 20) {
         header.classList.add("scrolled");
@@ -296,6 +397,36 @@ window.addEventListener("scroll", () => {
         header.classList.remove("scrolled");
     }
 });
+
+// Seiten-Umschalter Funktion
+function switchPage(pageId) {
+    // Alle Seiten verstecken
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Alle Nav-Links deaktivieren
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Gewünschte Seite anzeigen
+    const activePage = document.getElementById('page-' + pageId);
+    if(activePage) {
+        activePage.classList.add('active');
+    }
+
+    // Aktiven Nav-Link markieren
+    const activeLink = document.getElementById('nav-' + pageId);
+    if(activeLink) {
+        activeLink.classList.add('active');
+    }
+
+    // Nach oben scrollen bei Seitenwechsel
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
 </script>
 
 </body>

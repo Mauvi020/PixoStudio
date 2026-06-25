@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceDucki - Datenschutz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="header">
+    <a href="index.html" class="logo">
+        <img src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
+    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projekte</a>
+        <a href="showcase.html">Showcase</a>
+        <a href="club.html">Club-Beitritt</a>
+        <a href="members.html">Mitglieder</a>
+        <a href="support.html">Support & Kontakt</a>
+    </nav>
+</header>
+
+<div class="page">
+    <section class="section" style="text-align: left; max-width: 800px; margin: 0 auto;">
+        <h2 style="margin-bottom: 20px;">Datenschutzerklärung</h2>
+        <p style="color: var(--muted); line-height: 1.8; margin-bottom: 30px;">
+            Verantwortungsbewusster Umgang mit deinen Daten ist mir wichtig. Da es sich hierbei um eine private Website für mein Hardware-Projekt handelt, werden standardmäßig so wenige Daten wie möglich erfasst.
+        </p>
+
+        <h3 style="color: var(--accent2); margin-bottom: 10px;">1. Verantwortlicher</h3>
+        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 25px;">
+            Betreiber der Website und verantwortlich für den Datenschutz:<br>
+            <strong>Mauvi020</strong><br>
+            E-Mail: <a href="mailto:support@mauvi.de" style="color: var(--accent); text-decoration: none;">support@mauvi.de</a>
+        </p>
+
+        <h3 style="color: var(--accent2); margin-bottom: 10px;">2. Datenerfassung auf dieser Website</h3>
+        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 15px;">
+            <strong>Server-Log-Files:</strong> Wenn du diese Website aufrufst, erhebt der Hosting-Anbieter (z.B. GitHub Pages) automatisch Informationen, die dein Browser automatisch übermittelt. Dies sind meistens:
+        </p>
+        <ul style="color: var(--muted); margin-left: 20px; margin-bottom: 25px; line-height: 1.7;">
+            <li>Browsertyp und Browserversion</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Referrer URL (die zuvor besuchte Seite)</li>
+            <li>Hostname des zugreifenden Rechners (IP-Adresse)</li>
+            <li>Uhrzeit der Serveranfrage</li>
+        </ul>
+
+        <h3 style="color: var(--accent2); margin-bottom: 10px;">3. Externe Links & Drittanbieter</h3>
+        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 15px;">
+            Auf dieser Website sind Dienste von Drittanbietern verlinkt. Wenn du diese Links anklickst, verlässt du meine Website, und die Datenschutzbestimmungen des jeweiligen Anbieters treten in Kraft:
+        </p>
+        <ul style="color: var(--muted); margin-left: 20px; margin-bottom: 25px; line-height: 1.7;">
+            <li><strong>Discord:</strong> Für unseren Club-Server gelten die Datenschutzrichtlinien von Discord Inc.</li>
+            <li><strong>Ko-Fi:</strong> Wenn du mich finanziell unterstützt, läuft die Zahlungsabwicklung und Datenerfassung über Ko-Fi.</li>
+            <li><strong>GitHub:</strong> Bilder und Grafiken werden teilweise über GitHub-Repositories geladen.</li>
+        </ul>
+
+        <h3 style="color: var(--accent2); margin-bottom: 10px;">4. Deine Rechte</h3>
+        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 25px;">
+            Du hast jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck deiner gespeicherten personenbezogenen Daten zu erhalten. Du hast außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wende dich dazu einfach per Mail an <a href="mailto:support@mauvi.de" style="color: var(--accent); text-decoration: none;">support@mauvi.de</a>.
+        </p>
+    </section>
+</div>
+
+<footer id="footer">
+    <img src="https://raw.githubusercontent.com/Mauvi020/Mauvi.Downloads-/refs/heads/main/2image.png" alt="Logo">
+    <p><strong>SpaceDucki</strong></p>
+    <p class="small">© 2026 SpaceDucki</p>
+    <p class="small">Betreiber: Mauvi020</p>
+    <p class="small">info.mauvi.de | <a href="datenschutz.html" style="color: var(--muted); text-decoration: underline;">Datenschutz</a></p>
+</footer>
+
+<script>
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) { header.classList.add("scrolled"); } 
+        else { header.classList.remove("scrolled"); }
+    });
+</script>
+</body>
+</html>

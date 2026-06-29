@@ -1,25 +1,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-    --bg: #1e0b1d;           /* Sehr dunkles Retro-Violett aus deinem Logo-Hintergrund */
-    --card: #2d132c;         /* Hellerer Beerenton für die Boxen */
-    --accent: #ff4b5c;       /* Knalliges Retro-Rot */
-    --accent2: #e2b47b;      /* Der Gelb/Hellbraun-Mix aus den Buchstaben */
-    --text: #f5f7fa;
-    --muted: #a3829e;
-    --discord: #5865F2;
+:root {
+    --bg: #2d132c;           /* Das tiefe, edle Retro-Violett aus dem Hintergrund von IMG_0157.png */
+    --card: #1e0b1d;         /* Etwas dunklerer Ton für klaren Kontrast auf den Boxen */
+    --accent: #ff4b5c;       /* Knalliges 8-Bit Rot für wichtige Akzente */
+    --accent2: #e2b47b;      /* Der perfekte Gelb/Hellbraun-Mix aus den Buchstaben deines Logos */
+    --text: #f5f7fa;         /* Helles Off-White für beste Lesbarkeit */
+    --muted: #a3829e;        /* Ausgedünntes Violett für sekundäre Texte */
+    --discord: #5865F2;      /* Original Discord-Blau */
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    /* Verhindert weiche Kanten bei Bildern für echten Pixel-Look */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Verhindert verschwommene Kanten bei Grafiken und Avataren für echten Pixel-Look */
     image-rendering: pixelated; 
 }
 
-body{
+body {
     font-family: 'Nunito', sans-serif;
     background: var(--bg);
     color: var(--text);
@@ -29,40 +29,39 @@ body{
     min-height: 100vh;
 }
 
-/* HEADER - RETRO STYLE */
-header{
+/* --- HEADER & NAVIGATION --- */
+header {
     position: sticky;
     top: 0;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 8%;
+    padding: 20px 8%;
     transition: .3s;
     background: var(--bg);
-    border-bottom: 4px solid rgba(245, 247, 252, 0.1);
+    border-bottom: 4px solid rgba(226, 180, 123, 0.2); /* Dezent angerissen im Logo-Farbton */
 }
 
-header.scrolled{
-    background: rgba(30, 11, 29, 0.9);
+header.scrolled {
+    background: rgba(45, 19, 44, 0.95);
     backdrop-filter: blur(4px);
-    border-bottom: 4px solid var(--accent);
+    border-bottom: 4px solid var(--accent2);
 }
 
-.logo img{
+.logo img {
     height: 55px;
     transition: .3s;
     cursor: pointer;
 }
 
-header.scrolled .logo img{
+header.scrolled .logo img {
     height: 40px;
 }
 
-/* NAVIGATION */
-nav a{
+nav a {
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.65rem; /* Pixel-Schriften müssen etwas kleiner sein */
+    font-size: 0.65rem; /* Kleine Pixel-Größe für echten Arcade-Vibe */
     color: var(--text);
     text-decoration: none;
     margin-left: 20px;
@@ -71,12 +70,12 @@ nav a{
     letter-spacing: 0.5px;
 }
 
-nav a:hover, nav a.active{
+nav a:hover, nav a.active {
     color: var(--accent2);
     text-shadow: 2px 2px 0px var(--accent);
 }
 
-/* PAGES SYSTEM */
+/* --- PAGES SYSTEM --- */
 .page {
     display: none;
     flex: 1;
@@ -86,8 +85,8 @@ nav a:hover, nav a.active{
     display: block;
 }
 
-/* HERO SECTION */
-.hero{
+/* --- HERO SECTION --- */
+.hero {
     min-height: 70vh;
     display: flex;
     flex-direction: column;
@@ -97,25 +96,25 @@ nav a:hover, nav a.active{
     padding: 40px;
 }
 
-.hero-logo{
-    height: 150px;
+.hero-logo {
+    height: 160px;
     margin-bottom: 25px;
 }
 
-.hero h1{
+.hero h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 2.2rem;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 25px;
     color: var(--text);
 }
 
-.hero h1 span{
+.hero h1 span {
     color: var(--accent2);
     text-shadow: 4px 4px 0px var(--accent);
 }
 
-.hero p{
+.hero p {
     max-width: 750px;
     color: var(--muted);
     line-height: 1.8;
@@ -123,89 +122,90 @@ nav a:hover, nav a.active{
     margin-bottom: 35px;
 }
 
-/* KANTIGE PIXEL-BUTTONS */
-.btn{
+/* --- KANTIGE 8-BIT BUTTONS --- */
+.btn {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.75rem;
     display: inline-block;
     padding: 16px 28px;
     text-decoration: none;
-    transition: .15s;
+    transition: .1s;
     cursor: pointer;
-    border: 4px solid #ffffff;
+    border: 4px solid var(--text);
     box-shadow: 4px 4px 0px #000000;
 }
 
-.primary{
+.primary {
     background: var(--accent);
     color: white;
-    border-color: var(--text);
 }
 
-.primary:hover{
+.primary:hover {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px #000000;
     background: var(--accent2);
-    color: var(--bg);
+    color: var(--card);
+    border-color: var(--card);
 }
 
 .discord-btn {
     background: var(--discord);
     color: white;
-    border-color: var(--text);
 }
 
 .discord-btn:hover {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px #000000;
+    background: #434eb9;
 }
 
-/* SECTIONS & INFOKARTEN */
-.section{
+/* --- CONTAINER & RETRO BOXEN --- */
+.section {
     padding: 60px 10% 80px 10%;
 }
 
-.section h2{
+.section h2 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 50px;
     color: var(--text);
+    text-shadow: 3px 3px 0px var(--card);
 }
 
-.cards{
+.cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
 }
 
-.card{
+.card {
     background: var(--card);
     padding: 30px;
-    border: 4px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
     transition: .2s;
 }
 
-.card:hover{
+.card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
-    box-shadow: 6px 10px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 6px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-.card h3{
+.card h3 {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.85rem;
     margin-bottom: 15px;
     color: var(--accent2);
 }
 
-.card p{
+.card p {
     color: var(--muted);
     line-height: 1.7;
 }
 
-/* SHOWCASE PIXEL-BOXEN */
+/* --- SHOWCASE GRID (GAME BOY FORMAT) --- */
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -215,8 +215,8 @@ nav a:hover, nav a.active{
 
 .showcase-item {
     background: var(--card);
-    border: 4px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     transition: .2s;
     display: flex;
@@ -231,7 +231,7 @@ nav a:hover, nav a.active{
 
 .showcase-image {
     width: 100%;
-    background: #170716;
+    background: #120411; /* Extra dunkler Röhren-Inhalt */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,7 +271,7 @@ nav a:hover, nav a.active{
     line-height: 1.6;
 }
 
-/* MITGLIEDER GRID */
+/* --- MITGLIEDER (RETRO AVATARE) --- */
 .member-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -281,8 +281,8 @@ nav a:hover, nav a.active{
 
 .member-card {
     background: var(--card);
-    border: 4px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
     padding: 25px;
     text-align: center;
     transition: 0.2s;
@@ -296,7 +296,7 @@ nav a:hover, nav a.active{
 .member-avatar {
     width: 84px;
     height: 84px;
-    background: #170716;
+    background: #120411;
     margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
@@ -312,7 +312,7 @@ nav a:hover, nav a.active{
 }
 
 .member-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-bottom: 5px;
 }
 
@@ -324,7 +324,7 @@ nav a:hover, nav a.active{
     letter-spacing: 1px;
 }
 
-/* LIGHTBOX (GROSSANSICHT) */
+/* --- SCREEN LIGHTBOX OVERLAY --- */
 .lightbox {
     display: none;
     position: fixed;
@@ -333,7 +333,7 @@ nav a:hover, nav a.active{
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(15, 6, 14, 0.96);
+    background: rgba(30, 11, 29, 0.97);
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
@@ -350,8 +350,8 @@ nav a:hover, nav a.active{
     max-width: 90%;
     max-height: 80%;
     object-fit: contain;
-    border: 4px solid var(--accent2);
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.7);
+    border: 6px solid var(--accent2);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.8);
 }
 
 .lightbox-close {
@@ -369,16 +369,16 @@ nav a:hover, nav a.active{
     color: var(--accent);
 }
 
-/* RETRO FOOTER */
-footer{
+/* --- FOOTER (ARCADE-FINALE) --- */
+footer {
     padding: 50px 20px;
     text-align: center;
     color: var(--muted);
     border-top: 4px solid rgba(255, 255, 255, 0.05);
-    background: #150614;
+    background: #120411;
 }
 
-footer img{
+footer img {
     height: 45px;
     margin-bottom: 15px;
 }
@@ -387,10 +387,12 @@ footer strong {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.8rem;
     color: var(--text);
+    display: block;
+    margin-bottom: 10px;
 }
 
-.small{
+.small {
     font-size: .9rem;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 </style>

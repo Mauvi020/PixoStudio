@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
 
 :root {
-    --bg: #0d081b;         /* Tiefes Arcade-Schwarz/Violett */
-    --card: #1b1235;       /* Retro-Konsolen-Grauviolett */
-    --accent: #00f0ff;     /* Neon Cyan */
-    --accent2: #ffb800;    /* Arcade Gelb */
-    --text: #ffffff;
-    --muted: #8d81ac;
-    --discord: #5865F2;
+    --bg: #1a0505;         /* Sehr dunkles Schwarz-Rot (Arcade-Vibe) */
+    --card: #321010;       /* Dunkles Ziegelrot für die Boxen & Menüs */
+    --accent: #ff3333;     /* Hauptfarbe: Knalliges Retro-Rot */
+    --accent2: #d4af37;    /* Akzentfarbe: Gelb-Braun-Gold / Metallic Gold */
+    --text: #fff5f5;       /* Leicht rötlich angehauchtes Weiß für gute Lesbarkeit */
+    --muted: #a67c7c;      /* Ausgeblichenes Braun-Rot für Nebentexte & Rahmen */
+    --discord: #5865F2;    /* Discord-Blau (wird nur für den speziellen Button genutzt) */
 }
 
 * {
@@ -26,7 +26,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     /* Subtiler Röhrenfernseher-Scanline-Effekt */
-    background-image: linear-gradient(rgba(18, 10, 36, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-image: linear-gradient(rgba(26, 5, 5, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(212, 175, 55, 0.01), rgba(0, 0, 255, 0.02));
     background-size: 100% 4px, 6px 100%;
 }
 
@@ -60,14 +60,14 @@ header.scrolled {
     height: 50px;
     transition: .2s;
     cursor: pointer;
-    image-rendering: pixelated; /* Falls dein neues Logo Pixelart ist */
+    image-rendering: pixelated;
 }
 
 header.scrolled .logo img {
     height: 40px;
 }
 
-/* NAV */
+/* NAV (Fix für Aktiv-Farben) */
 nav a {
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.2rem;
@@ -134,16 +134,15 @@ nav a:hover, nav a.active {
     font-size: 0.9rem;
     display: inline-block;
     padding: 16px 28px;
-    border-radius: 0px; /* Kantig */
+    border-radius: 0px;
     text-decoration: none;
     transition: .1s;
     cursor: pointer;
-    border: 3px solid #html;
 }
 
 .primary {
     background: var(--accent);
-    color: var(--bg);
+    color: var(--text);
     border: 3px solid var(--text);
     box-shadow: 5px 5px 0px var(--accent2);
 }
@@ -176,6 +175,7 @@ nav a:hover, nav a.active {
     text-align: center;
     margin-bottom: 50px;
     color: var(--accent);
+    text-shadow: 3px 3px 0px var(--card);
 }
 
 .cards {
@@ -189,14 +189,14 @@ nav a:hover, nav a.active {
     padding: 30px;
     border-radius: 0px;
     border: 3px solid var(--muted);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
     transition: .1s;
 }
 
 .card:hover {
     transform: translate(-4px, -4px);
     border-color: var(--accent2);
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.6);
 }
 
 .card h3 {
@@ -223,7 +223,7 @@ nav a:hover, nav a.active {
     background: var(--card);
     border-radius: 0px;
     border: 3px solid var(--muted);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -237,7 +237,7 @@ nav a:hover, nav a.active {
 
 .showcase-image {
     width: 100%;
-    background: #07040e;
+    background: #0f0303;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -293,8 +293,8 @@ nav a:hover, nav a.active {
 .member-avatar {
     width: 80px;
     height: 80px;
-    border-radius: 0px; /* Quadratisch im Retro-Style */
-    background: #07040e;
+    border-radius: 0px;
+    background: #0f0303;
     margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
@@ -322,7 +322,7 @@ nav a:hover, nav a.active {
     color: var(--accent);
 }
 
-/* LIGHTBOX OVERLAY */
+/* LIGHTBOX OVERLAY (Bild-Vorschau) */
 .lightbox {
     display: none;
     position: fixed;
@@ -331,7 +331,7 @@ nav a:hover, nav a.active {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(7, 4, 14, 0.95);
+    background: rgba(15, 3, 3, 0.95);
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -371,7 +371,7 @@ footer {
     text-align: center;
     color: var(--muted);
     border-top: 4px solid var(--card);
-    background: #07040e;
+    background: #0f0303;
 }
 
 footer img {

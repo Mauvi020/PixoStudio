@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
 :root {
-    --bg: #0b1020;
-    --card: #141b34;
-    --accent: #4ea1ff;
-    --accent2: #ffcc4d;
-    --text: #f5f7fa;
-    --muted: #a8b3c7;
+    --bg: #0d081b;         /* Tiefes Arcade-Schwarz/Violett */
+    --card: #1b1235;       /* Retro-Konsolen-Grauviolett */
+    --accent: #00f0ff;     /* Neon Cyan */
+    --accent2: #ffb800;    /* Arcade Gelb */
+    --text: #ffffff;
+    --muted: #8d81ac;
     --discord: #5865F2;
 }
 
@@ -15,18 +17,22 @@
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* Subtiler Röhrenfernseher-Scanline-Effekt */
+    background-image: linear-gradient(rgba(18, 10, 36, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 4px, 6px 100%;
 }
 
-/* ANIMATION */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+/* ANIMATION (Pixel-Up) */
+@keyframes pixelUp {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -38,51 +44,56 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 10%;
-    transition: .3s;
+    padding: 20px 10%;
+    transition: .2s;
     background: var(--bg);
+    border-bottom: 4px solid var(--card);
 }
 
 header.scrolled {
-    background: rgba(11, 16, 32, .75);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    background: var(--card);
+    border-bottom: 4px solid var(--accent);
 }
 
 /* LOGO HEADER */
 .logo img {
-    height: 60px;
-    transition: .3s;
+    height: 50px;
+    transition: .2s;
     cursor: pointer;
+    image-rendering: pixelated; /* Falls dein neues Logo Pixelart ist */
 }
 
 header.scrolled .logo img {
-    height: 42px;
+    height: 40px;
 }
 
 /* NAV */
 nav a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
     color: var(--text);
     text-decoration: none;
-    margin-left: 20px;
-    font-weight: 600;
-    transition: .2s;
+    margin-left: 25px;
+    font-weight: bold;
+    transition: .1s;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 nav a:hover, nav a.active {
-    color: var(--accent2);
+    color: var(--accent);
+    text-shadow: 2px 2px 0px var(--card);
 }
 
 /* PAGES SYSTEM */
 .page {
-    animation: fadeUp 0.5s ease forwards;
+    animation: pixelUp 0.3s ease forwards;
     flex: 1;
 }
 
 /* HERO */
 .hero {
-    min-height: 75vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,13 +103,18 @@ nav a:hover, nav a.active {
 }
 
 .hero-logo {
-    height: 170px;
-    margin-bottom: 20px;
+    height: 150px;
+    margin-bottom: 30px;
+    image-rendering: pixelated;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    font-family: 'Press Start 2P', display;
+    font-size: 2.5rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    color: var(--text);
+    text-shadow: 4px 4px 0px var(--card);
 }
 
 .hero h1 span {
@@ -108,113 +124,127 @@ nav a:hover, nav a.active {
 .hero p {
     max-width: 800px;
     color: var(--muted);
-    line-height: 1.8;
-    font-size: 1.15rem;
-    margin-bottom: 35px;
+    line-height: 1.6;
+    margin-bottom: 40px;
 }
 
-/* BUTTONS */
+/* BUTTONS (Harter Retro-Block-Schatten) */
 .btn {
+    font-family: 'Press Start 2P', display;
+    font-size: 0.9rem;
     display: inline-block;
-    padding: 14px 28px;
-    border-radius: 999px;
+    padding: 16px 28px;
+    border-radius: 0px; /* Kantig */
     text-decoration: none;
-    font-weight: 700;
-    transition: .25s;
+    transition: .1s;
     cursor: pointer;
-    border: none;
+    border: 3px solid #html;
 }
 
 .primary {
     background: var(--accent);
-    color: white;
+    color: var(--bg);
+    border: 3px solid var(--text);
+    box-shadow: 5px 5px 0px var(--accent2);
 }
 
 .primary:hover {
-    transform: translateY(-3px);
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--accent2);
 }
 
 .discord-btn {
     background: var(--discord);
     color: white;
+    border: 3px solid var(--text);
+    box-shadow: 5px 5px 0px var(--accent);
 }
 
 .discord-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--accent);
 }
 
 /* SECTIONS / PAGES */
 .section {
-    padding: 40px 10% 80px 10%;
+    padding: 60px 10%;
 }
 
 .section h2 {
+    font-family: 'Press Start 2P', display;
+    font-size: 1.6rem;
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--accent);
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+    gap: 30px;
 }
 
 .card {
     background: var(--card);
     padding: 30px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, .05);
-    transition: .3s;
+    border-radius: 0px;
+    border: 3px solid var(--muted);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
+    transition: .1s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translate(-4px, -4px);
+    border-color: var(--accent2);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
 }
 
 .card h3 {
-    margin-bottom: 12px;
+    font-family: 'Press Start 2P', display;
+    font-size: 1rem;
+    margin-bottom: 15px;
     color: var(--accent2);
 }
 
 .card p {
-    color: var(--muted);
-    line-height: 1.7;
+    color: var(--text);
+    line-height: 1.6;
 }
 
 /* SHOWCASE STYLES */
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    gap: 35px;
     margin-top: 20px;
 }
 
 .showcase-item {
     background: var(--card);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .05);
-    transition: .3s;
+    border-radius: 0px;
+    border: 3px solid var(--muted);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: .1s;
 }
 
 .showcase-item:hover {
-    transform: translateY(-5px);
+    transform: translate(-4px, -4px);
+    border-color: var(--accent);
 }
 
 .showcase-image {
     width: 100%;
-    background: #0f152a;
+    background: #07040e;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     overflow: hidden;
-    padding: 10px;
+    padding: 15px;
+    border-bottom: 3px solid var(--muted);
 }
 
 .showcase-image img {
@@ -222,85 +252,74 @@ nav a:hover, nav a.active {
     height: auto;
     max-height: 280px;
     object-fit: contain;
-    border-radius: 12px;
-    transition: transform 0.2s;
-}
-
-.showcase-image img:hover {
-    transform: scale(1.02);
+    transition: transform 0.1s;
+    image-rendering: pixelated;
 }
 
 .showcase-content {
     padding: 25px;
-    background: var(--card);
     flex-grow: 1;
-    border-top: 1px solid rgba(255, 255, 255, .03);
 }
 
 .showcase-content h3 {
-    color: var(--accent2);
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-}
-
-.showcase-content p {
-    color: var(--muted);
-    line-height: 1.6;
+    font-family: 'Press Start 2P', display;
     font-size: 1rem;
+    color: var(--accent2);
+    margin-bottom: 12px;
 }
 
 /* MEMBER GRID STYLES */
 .member-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: 25px;
     margin-top: 20px;
 }
 
 .member-card {
     background: var(--card);
-    border: 1px solid rgba(255, 255, 255, .05);
-    border-radius: 20px;
+    border: 3px solid var(--muted);
+    border-radius: 0px;
     padding: 25px;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.1s;
 }
 
 .member-card:hover {
-    transform: translateY(-3px);
+    transform: translate(-2px, -2px);
     border-color: var(--accent);
 }
 
 .member-avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    background: #1e284a;
+    border-radius: 0px; /* Quadratisch im Retro-Style */
+    background: #07040e;
     margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 2px solid var(--accent2);
+    border: 3px solid var(--accent2);
 }
 
 .member-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    image-rendering: pixelated;
 }
 
 .member-card h3 {
-    font-size: 1.25rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4rem;
     margin-bottom: 5px;
 }
 
 .member-role {
-    font-size: 0.9rem;
-    color: var(--accent2);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: 'Press Start 2P', display;
+    font-size: 0.7rem;
+    color: var(--accent);
 }
 
 /* LIGHTBOX OVERLAY */
@@ -312,12 +331,11 @@ nav a:hover, nav a.active {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(5, 8, 18, 0.95);
-    backdrop-filter: blur(8px);
+    background: rgba(7, 4, 14, 0.95);
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
 .lightbox.active {
@@ -329,14 +347,8 @@ nav a:hover, nav a.active {
     max-width: 90%;
     max-height: 85%;
     object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.lightbox.active img {
-    transform: scale(1);
+    border: 4px solid var(--accent);
+    box-shadow: 0px 0px 20px var(--accent);
 }
 
 .lightbox-close {
@@ -344,10 +356,9 @@ nav a:hover, nav a.active {
     top: 25px;
     right: 35px;
     color: var(--text);
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-family: 'Press Start 2P', display;
+    font-size: 2rem;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .lightbox-close:hover {
@@ -356,20 +367,26 @@ nav a:hover, nav a.active {
 
 /* FOOTER */
 footer {
-    padding: 40px 20px;
+    padding: 50px 20px;
     text-align: center;
     color: var(--muted);
-    border-top: 1px solid rgba(255, 255, 255, .05);
-    background: var(--bg);
+    border-top: 4px solid var(--card);
+    background: #07040e;
 }
 
 footer img {
     height: 40px;
-    margin-bottom: 10px;
-    opacity: 0.9;
+    margin-bottom: 15px;
+    image-rendering: pixelated;
 }
 
 .small {
-    font-size: .95rem;
+    font-size: 1rem;
     margin-top: 10px;
+}
+
+footer p strong {
+    font-family: 'Press Start 2P', display;
+    font-size: 1rem;
+    color: var(--accent);
 }
